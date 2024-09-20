@@ -31,14 +31,23 @@ venv\bin\activate
 pip install -r requirements.txt
 ```
 ## Colaboradores
+
+Agradecimentos aos colaboradores desse projeto:
+
 <p align="left">
   <a href="https://github.com/erikgabriel07">
-    <img src="https://github.com/erikgabriel07.png?size=100" alt="Erik Gabriel" width="100" />
+    <img src="https://github.com/erikgabriel07.png?size=100" alt="Erik Gabriel" width="100" style="margin-rigth: 15px;" />
+    <br/>
+    <sub><b>Erik Gabriel</b></sub>
   </a>
   <a href="https://github.com/jrdiasdev">
-    <img src="https://github.com/jrdiasdev.png?size=100" alt="Jr. Dias" width="100" />
+    <img src="https://github.com/jrdiasdev.png?size=100" alt="Jr. Dias" width="100" style="margin-rigth: 15px;" />
+    <br/>
+    <sub><b>Jr. Dias</b></sub>
   </a>
   <a href="https://github.com/ryanricardoo">
-    <img src="https://github.com/ryanricardoo.png?size=100" alt="Ryan Ricardo" width="100" />
+    <img src="https://github.com/ryanricardoo.png?size=100" alt="Ryan Ricardo" width="100" style="margin-rigth: 15px;" />
+    <br/>
+    <sub><b>Ryan Ricardo</b></sub>
   </a>
 </p>
