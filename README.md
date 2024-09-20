@@ -44,4 +44,7 @@ Agradecimentos aos colaboradores desse projeto:
   <a href="https://github.com/ryanricardoo" style="margin-right: 20px; text-align: center;">
     <img src="https://github.com/ryanricardoo.png?size=100" alt="Ryan Ricardo" width="100" />
   </a>
+  <a href="https://github.com/bispoalef" style="margin-right: 20px; text-align: center;">
+    <img src="https://github.com/bispoalef.png?size=100" alt="Bispo Alef" width="100" />
+  </a>
 </p>
