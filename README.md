@@ -8,16 +8,18 @@ como criar arquivo, inserir dados e deletar dados realizando operações no banc
 
 ## Tutorial
 ### Clonar repositório
+
 ```bash
 git clone https://github.com/erikgabriel07/Microservices-PythonApplication
 ```
+
 ### Criar ambiente virtual
 #### Para Windows
-```cmd
+```bash
 cd Microservices-PythonApplication
 python -m venv venv
 venv\Scripts\activate
-```
+
 #### Para Linux
 ```bash
 cd Microservices-PythonApplication
