@@ -38,4 +38,7 @@ pip install -r requirements.txt
   <a href="https://github.com/jrdiasdev">
     <img src="https://github.com/jrdiasdev.png?size=100" alt="Jr. Dias" width="100" />
   </a>
+  <a href="https://github.com/ryanricardoo">
+    <img src="https://github.com/ryanricardoo.png?size=100" alt="Ryan Ricardo" width="100" />
+  </a>
 </p>
