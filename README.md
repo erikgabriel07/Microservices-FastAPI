@@ -31,8 +31,11 @@ venv\bin\activate
 pip install -r requirements.txt
 ```
 ## Colaboradores
-[![Erik Gabriel](https://github.com/erikgabriel07.png?size=100)](https://github.com/erikgabriel07)  
-[Erik Gabriel](https://github.com/erikgabriel07)
-
-[![Jr. Dias](https://github.com/jrdiasdev.png?size=100)](https://github.com/jrdiasdev)  
-[Jr. Dias](https://github.com/jrdiasdev)
+<p align="center">
+  <a href="https://github.com/erikgabriel07">
+    <img src="https://github.com/erikgabriel07.png?size=100" alt="Erik Gabriel" width="100" />
+  </a>
+  <a href="https://github.com/jrdiasdev">
+    <img src="https://github.com/jrdiasdev.png?size=100" alt="Jr. Dias" width="100" />
+  </a>
+</p>
