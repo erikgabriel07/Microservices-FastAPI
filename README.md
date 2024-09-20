@@ -36,7 +36,7 @@ Agradecimentos aos colaboradores desse projeto:
 
 <p align="left">
   <a href="https://github.com/erikgabriel07" style="margin-right: 20px; text-align: center;">
-    <img src="https://github.com/erikgabriel07.png?size=100" alt="Erik Gabriel" width="100" style="border-radius: 50%;" />
+    <img src="https://github.com/erikgabriel07.png?size=100" alt="Erik Gabriel" style="border-radius: 50%;" />
   </a>
   <a href="https://github.com/jrdiasdev" style="margin-right: 20px; text-align: center;">
     <img src="https://github.com/jrdiasdev.png?size=100" alt="Jr. Dias" width="100" style="border-radius: 50%;" />
