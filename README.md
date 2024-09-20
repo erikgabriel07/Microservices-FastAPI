@@ -7,13 +7,13 @@ se comunicam entre si com o objetivo de processar arquivos de dados e realizar o
 como criar arquivo, inserir dados e deletar dados realizando operações no banco de dados.
 
 ## Tutorial
-### Clonar repositório
+1. Clonar repositório
 
 ```bash
 git clone https://github.com/erikgabriel07/Microservices-PythonApplication
 ```
 
-### Criar ambiente virtual
+2. Criar ambiente virtual
 #### Para Windows
 ```bash
 cd Microservices-PythonApplication
@@ -25,4 +25,9 @@ venv\Scripts\activate
 cd Microservices-PythonApplication
 python -m venv venv
 venv\bin\activate
+```
+
+3. Instale as dependências
+```bash
+pip install -r requirements.txt
 ```
