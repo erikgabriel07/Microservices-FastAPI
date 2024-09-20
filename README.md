@@ -13,13 +13,13 @@ git clone https://github.com/erikgabriel07/Microservices-PythonApplication
 ```
 
 ### 2. Criar ambiente virtual
-#### Para Windows
+#### Windows
 ```bash
 cd Microservices-PythonApplication
 python -m venv venv
 venv\Scripts\activate
 ```
-#### Para Linux
+#### Linux
 ```bash
 cd Microservices-PythonApplication
 python -m venv venv
