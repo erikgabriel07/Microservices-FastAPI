@@ -34,7 +34,7 @@ pip install -r requirements.txt
 
 Agradecimentos aos colaboradores desse projeto:
 
-<p align="left">
+<p align="center">
   <a href="https://github.com/erikgabriel07">
     <img src="https://github.com/erikgabriel07.png?size=100" alt="Erik Gabriel" width="100" style="margin-rigth: 15px;" />
     <br/>
