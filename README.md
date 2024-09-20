@@ -33,3 +33,6 @@ pip install -r requirements.txt
 ## Colaboradores
 [![Erik Gabriel](https://github.com/erikgabriel07.png?size=100)](https://github.com/erikgabriel07)  
 [Erik Gabriel](https://github.com/erikgabriel07)
+[![Jr. Dias](https://github.com/jrdiasdev.png?size=100)](https://github.com/jrdiasdev)  
+[Jr. Dias](https://github.com/jrdiasdev)
+https://github.com/jrdiasdev
