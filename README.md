@@ -31,7 +31,7 @@ venv\bin\activate
 pip install -r requirements.txt
 ```
 ## Colaboradores
-<p align="center">
+<p align="left">
   <a href="https://github.com/erikgabriel07">
     <img src="https://github.com/erikgabriel07.png?size=100" alt="Erik Gabriel" width="100" />
   </a>
