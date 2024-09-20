@@ -34,17 +34,20 @@ pip install -r requirements.txt
 
 Agradecimentos aos colaboradores desse projeto:
 
-<p align="center">
-  <a href="https://github.com/erikgabriel07">
+<p align="left">
+  <a href="https://github.com/erikgabriel07" style="margin-right: 20px; text-align: center;">
     <img src="https://github.com/erikgabriel07.png?size=100" alt="Erik Gabriel" width="100" />
+    <br />
     <sub><b>Erik Gabriel</b></sub>
   </a>
-  <a href="https://github.com/jrdiasdev">
+  <a href="https://github.com/jrdiasdev" style="margin-right: 20px; text-align: center;">
     <img src="https://github.com/jrdiasdev.png?size=100" alt="Jr. Dias" width="100" />
+    <br />
     <sub><b>Jr. Dias</b></sub>
   </a>
-  <a href="https://github.com/ryanricardoo">
+  <a href="https://github.com/ryanricardoo" style="margin-right: 20px; text-align: center;">
     <img src="https://github.com/ryanricardoo.png?size=100" alt="Ryan Ricardo" width="100" />
+    <br />
     <sub><b>Ryan Ricardo</b></sub>
   </a>
 </p>
