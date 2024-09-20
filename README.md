@@ -19,7 +19,7 @@ git clone https://github.com/erikgabriel07/Microservices-PythonApplication
 cd Microservices-PythonApplication
 python -m venv venv
 venv\Scripts\activate
-
+```
 #### Para Linux
 ```bash
 cd Microservices-PythonApplication
