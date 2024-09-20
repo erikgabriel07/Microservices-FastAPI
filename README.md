@@ -30,3 +30,6 @@ venv\bin\activate
 ```bash
 pip install -r requirements.txt
 ```
+## Colaboradores
+[![Erik Gabriel](https://github.com/erikgabriel07.png?size=100)](https://github.com/erikgabriel07)  
+[Erik Gabriel](https://github.com/erikgabriel07)
