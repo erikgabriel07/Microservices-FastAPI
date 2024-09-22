@@ -7,6 +7,8 @@ from fastapi import HTTPException, status, UploadFile
 class FileProcessor:
     def __init__(self):
         self.directory = 'data'
+        # Cria a pasta caso não exista
+        os.makedirs(self.directory, exist_ok=True)  
 
     async def upload_file(self, file: UploadFile):
 
@@ -47,7 +49,7 @@ class FileProcessor:
                 return {"mensagem": f"Arquivo {file.filename} processado e salvo como JSON com sucesso"}
             
             except Exception as e:
-
+                
                 raise HTTPException(
                     status_code=status.HTTP_400_BAD_REQUEST,
                     detail=f"Falha ao processar o arquivo CSV: {str(e)}"
