@@ -33,10 +33,10 @@ class FileProcessor:
                 for row in csv_reader:
 
                     # Remove chaves vazias e converte valores numéricos
-                    cleaned_row = {key: value.replace(',', '.') if key in ["Valor da Receita Tributária", "Percentual do PIB"] else value 
-                                   
-                                   # Remove chaves vazias
-                                   for key, value in row.items() if key.strip()}  
+                    cleaned_row = {
+                                key: (value.replace(',', '.') if key in ["Valor da Receita Tributária", "Percentual do PIB"] else value)
+                                for key, value in row.items() if key.strip() and value.strip()
+                    }
                     data_to_save.append(cleaned_row)
 
                 # Salva os dados em formato JSON na pasta 'data'
