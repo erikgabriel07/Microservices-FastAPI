@@ -32,12 +32,15 @@ class FileProcessor:
 
                 for row in csv_reader:
 
-                    # Remove chaves vazias e converte valores numéricos
-                    cleaned_row = {
-                                key: (value.replace(',', '.') if key in ["Valor da Receita Tributária", "Percentual do PIB"] else value)
-                                for key, value in row.items() if key.strip() and value.strip()
-                    }
-                    data_to_save.append(cleaned_row)
+                    # Deixa o valor com apenas 2 casas decimais após a virgula
+                    valor = row.get("Valor da Receita Tributária", "")
+
+                    if "," in valor:
+                        row["Valor da Receita Tributária"] = valor[:valor.find(",") + 3]
+
+                    # Remove chaves vazias
+                    row = {key: value for key, value in row.items() if key}
+                    data_to_save.append(row)
 
                 # Salva os dados em formato JSON na pasta 'data'
                 json_filename = os.path.join(self.directory, f"{file.filename.rsplit('.', 1)[0]}.json")
