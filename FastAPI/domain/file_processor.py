@@ -35,11 +35,11 @@ class FileProcessor:
                     # Deixa o valor com apenas 2 casas decimais após a virgula
                     valor = row.get("Valor da Receita Tributária", "")
 
-                    if "," in valor:
-                        row["Valor da Receita Tributária"] = valor[:valor.find(",") + 3]
+                    if "." in valor:
+                        row["Valor da Receita Tributária"] = valor[:valor.find(".") + 3]
 
                     # Remove chaves vazias
-                    row = {key: value for key, value in row.items() if key}
+                    # row = {key: value for key, value in row.items() if key}
                     data_to_save.append(row)
 
                 # Salva os dados em formato JSON na pasta 'data'
