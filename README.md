@@ -3,7 +3,7 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/erikgabriel07/Microservices-PythonApplication)
 ![Contributors](https://img.shields.io/github/contributors/erikgabriel07/Microservices-PythonApplication)
 
-# Microserviço para Processamento de Dados com FastAPI e Flask
+# Microsserviço para Processamento de Dados com FastAPI e Flask
 
 ## Tabela de conteúdo
 - [Introdução](#introdução)
