@@ -12,6 +12,8 @@
 - [Rotas da API](#rotas-da-api)
 - [Colaboradores](#colaboradores)
 
+**Acesse e baixe o repositório [FastAPI](https://github.com/erikgabriel07/Microservices-FlaskApplication) para complementar esse projeto.**
+
 ## Introdução
 
 Esse projeto é um microserviço criado utilizando FastAPI e Flask, onde as duas aplicações
