@@ -12,7 +12,7 @@
 - [Rotas da API](#rotas-da-api)
 - [Colaboradores](#colaboradores)
 
-**Acesse e baixe o repositório [FastAPI](https://github.com/erikgabriel07/Microservices-FlaskApplication) para complementar esse projeto.**
+**Acesse e baixe o repositório [Flask](https://github.com/erikgabriel07/Microservices-FlaskApplication) para complementar esse projeto.**
 
 ## Introdução
 
