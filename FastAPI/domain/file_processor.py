@@ -33,10 +33,10 @@ class FileProcessor:
                 for row in csv_reader:
 
                     # Deixa o valor com apenas 2 casas decimais após a virgula
-                    valor = row.get("Valor da Receita Tributária", "")
+                    valor = row.get("Valor_da_Receita_Tributaria", "")
 
                     if "." in valor:
-                        row["Valor da Receita Tributária"] = valor[:valor.find(".") + 3]
+                        row["Valor_da_Receita_Tributaria"] = valor[:valor.find(".") + 3]
 
                     # Remove chaves vazias
                     # row = {key: value for key, value in row.items() if key}
