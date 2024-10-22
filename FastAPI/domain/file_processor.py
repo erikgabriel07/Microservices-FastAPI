@@ -43,11 +43,11 @@ class FileProcessor:
                     data_to_save.append(row)
 
                 # Salva os dados em formato JSON na pasta 'data'
-                json_filename = os.path.join(self.directory, f"{file.filename.rsplit('.', 1)[0]}.json")
-                with open(json_filename, 'w', encoding='utf-8') as json_file:
+                # json_filename = os.path.join(self.directory, f"{file.filename.rsplit('.', 1)[0]}.json")
+                # with open(json_filename, 'w', encoding='utf-8') as json_file:
 
-                    # Define ensure_ascii como False
-                    json.dump(data_to_save, json_file, ensure_ascii=False, indent=4)  
+                     # Define ensure_ascii como False
+                #    json.dump(data_to_save, json_file, ensure_ascii=False, indent=4)  
 
                 return {"mensagem": f"Arquivo {file.filename} processado e salvo como JSON com sucesso"}
             
