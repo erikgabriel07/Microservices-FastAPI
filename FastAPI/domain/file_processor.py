@@ -3,11 +3,6 @@ from fastapi import HTTPException, status, UploadFile
 
 
 class FileProcessor:
-    def __init__(self):
-        self.directory = 'data'
-        # Cria a pasta caso não exista
-        os.makedirs(self.directory, exist_ok=True)
-
     async def list_files(self):
         # Estrutura do código
         return 0
