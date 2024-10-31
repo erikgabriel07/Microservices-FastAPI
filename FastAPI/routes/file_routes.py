@@ -34,8 +34,6 @@ async def upload_tributo_competencia(file: UploadFile = File(...)):
 async def delete(
     id: int = Query(None, alias='Identifier', ge=0,
                     description='ID do item a ser removido'),
-    value: bool = Query(False, alias='Value',
-                        description='Valor a ser configurado')
 ):
     return {'message': 'Data deleted successfully!'}
 
