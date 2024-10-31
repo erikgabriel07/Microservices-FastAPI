@@ -18,13 +18,17 @@ async def listar_arquivos():
 @router.post("/file/upload/base-incidencia", 
              summary = "Enviar Dados do Arquivo CSV", 
              description="Este endpoint recebe um arquivo CSV e retorna uma mensagem de confirmação.")
-async def upload_base_incidencia(file: UploadFile = File(...)):
+async def upload_base_incidencia(
+    file: UploadFile = File(..., description='Arquivo a ser carregado.')
+):
     return await FileProcessor().upload_file(file)
 
 @router.post("/file/upload/tributo-competencia", 
              summary = "Enviar Dados do Arquivo CSV", 
              description="Este endpoint recebe um arquivo CSV e retorna uma mensagem de confirmação.")
-async def upload_tributo_competencia(file: UploadFile = File(...)):
+async def upload_tributo_competencia(
+    file: UploadFile = File(..., description='Arquivo a ser carregado.')
+):
     return await FileProcessor().upload_file(file)
 
 @router.patch("/file/delete/",
@@ -33,7 +37,7 @@ async def upload_tributo_competencia(file: UploadFile = File(...)):
 @verify_id_parameter
 async def delete(
     id: int = Query(None, alias='Identifier', ge=0,
-                    description='ID do item a ser removido'),
+                    description='ID do item a ser removido.'),
 ):
     return {'message': 'Data deleted successfully!'}
 
@@ -43,8 +47,8 @@ async def delete(
 @verify_id_parameter
 async def duplicate(
     id: int = Query(None, alias='Identifier', ge=0,
-                    description='ID do item a ser marcado como duplicado'),
+                    description='ID do item a ser marcado como duplicado.'),
     value: bool = Query(False, alias='Value',
-                        description='Valor a ser configurado')
+                        description='Valor a ser configurado.')
 ):
     return {'message': 'Data \'duplicate\' was updated successfully!'}
