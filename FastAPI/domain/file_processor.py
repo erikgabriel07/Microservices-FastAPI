@@ -1,6 +1,4 @@
-import csv
-import json
-import os
+import csv, os
 from fastapi import HTTPException, status, UploadFile
 
 
