@@ -37,7 +37,7 @@ class FileProcessor:
 
                     data_to_save.append(row)  
 
-                return {"mensagem": f"Arquivo {file.filename} processado e salvo como JSON com sucesso"}
+                return {"message": f"Arquivo {file.filename} processado e salvo como JSON com sucesso"}
             
             except Exception as e:
                 
