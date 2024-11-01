@@ -1,5 +1,5 @@
 from fastapi import (
-    APIRouter, UploadFile, File, Query,
+    APIRouter, UploadFile, File
 )
 from domain.file_processor import FileProcessor
 
