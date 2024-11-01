@@ -1,9 +1,7 @@
 from fastapi import (
     APIRouter, UploadFile, File, Query,
 )
-
 from domain.file_processor import FileProcessor
-from domain.route_parameters import verify_id_parameter
 
 
 router = APIRouter()
