@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Request, status as s
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from routes import init_routes
@@ -14,6 +15,14 @@ def main():
         'mazenar e processar essas informações em um banco de dados.',
         debug=True) # debug somente em desenvolvimento
     init_routes(app)
+
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=['*'],
+        allow_methods=['*'],
+        allow_headers=['*'],
+        allow_credentials=True,
+    )
 
     @app.exception_handler(RequestValidationError)
     async def validation_exception_handler(

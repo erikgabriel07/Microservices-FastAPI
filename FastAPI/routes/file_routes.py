@@ -1,15 +1,26 @@
 from fastapi import (
-    APIRouter, UploadFile, File
+    APIRouter, UploadFile, File, Query
 )
 from domain.file_processor import FileProcessor
+from services.api_client import get_token
 
 
 router = APIRouter()
 
 
+@router.post('/generate/token',
+             summary='Retorna um token de acesso',
+             description='Rota para testes de geração de token. ' \
+                'Use o usuário \'flask\' e senha \'flask123\' para autenticar.')
+async def generate_token(
+    user=Query(..., alias='USUÁRIO', max_length=100),
+    pswd=Query(..., alias='SENHA', max_length=255)
+):
+    return get_token(user, pswd)
+
 @router.get("/file/list",
             summary="Listagem de dados",
-            description="Essa rota recupera informações do banco de dados")
+            description="Essa rota recupera informações do banco de dados.")
 async def listar_arquivos():
     return await FileProcessor().list_files()
 

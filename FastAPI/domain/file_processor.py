@@ -1,8 +1,14 @@
-import csv, os
+import csv
 from fastapi import HTTPException, status, UploadFile
 
 
 class FileProcessor:
+    def __init__(self) -> None:
+        self.token = None
+
+    def set_token(self, token):
+        self.token = token
+
     async def list_files(self):
         # Estrutura do código
         return 0
