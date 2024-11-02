@@ -1,6 +1,6 @@
 import csv
 from fastapi import HTTPException, status, UploadFile
-from services.api_client import send_data
+from services.api_client import send_data, list_file
 
 class FileProcessor:
     token = None
@@ -13,9 +13,8 @@ class FileProcessor:
     def get_token():
         return FileProcessor.token
 
-    async def list_files(self):
-        # Estrutura do código
-        return 0
+    async def list_files(self, bi=False, tc=False):
+        return list_file(bi,tc)
 
     async def upload_file(self, file: UploadFile):
 
