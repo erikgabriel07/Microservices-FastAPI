@@ -16,7 +16,8 @@ async def generate_token(
     user=Query(..., alias='USUÁRIO', max_length=100, example="flask"),
     pswd=Query(..., alias='SENHA', max_length=255, example="flask123")
 ):
-    return get_token(user, pswd)
+    file_processor = FileProcessor()
+    return get_token(user, pswd, file_processor=file_processor)
 
 @router.get("/file/list",
             summary="Listagem de dados",

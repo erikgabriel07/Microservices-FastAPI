@@ -84,8 +84,9 @@ class FileProcessor:
 
                     data_to_send.append(row)
 
-                header = {"Authorization": f"Bearer {self.token}"}
-
+                header = {
+                    'Authorization': f'Bearer {self.token}'
+                }
                 # Envia a lista completa para a API Flask
                 send_data(data_to_send, header) # Utilize await se send_insidencia for uma função assíncrona
 
