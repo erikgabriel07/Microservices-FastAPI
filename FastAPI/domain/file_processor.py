@@ -5,13 +5,11 @@ from services.api_client import send_data, list_file
 class FileProcessor:
     token = None
 
-    @staticmethod
-    def set_token(token):
+    def set_token(self, token):
         FileProcessor.token = token
-
-    @staticmethod
+        
     def get_token():
-        return FileProcessor.token
+        return self.token
     
     def __gen_auth_header(self):
         return {'Authorization': f'Bearer {self.token}'}
