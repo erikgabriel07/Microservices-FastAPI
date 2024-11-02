@@ -25,7 +25,8 @@ def get_token(user, pwd, file_processor):
     try:
         if file_processor.get_token():
             response = requests.post(url.FLASK_LOGIN_ROUTE, 
-                                     json={'token': file_processor.get_token()})
+                                     json={'user': user, 'pwd': pwd,
+                                           'token': file_processor.get_token()})
         else:
             response = requests.post(url.FLASK_LOGIN_ROUTE, json={'user': user, 'pwd': pwd})
         response.raise_for_status()
