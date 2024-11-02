@@ -13,8 +13,8 @@ router = APIRouter()
              description='Rota para testes de geração de token. ' \
                 'Use o usuário \'flask\' e senha \'flask123\' para autenticar.')
 async def generate_token(
-    user=Query(..., alias='USUÁRIO', max_length=100),
-    pswd=Query(..., alias='SENHA', max_length=255)
+    user=Query(..., alias='USUÁRIO', max_length=100, example="flask"),
+    pswd=Query(..., alias='SENHA', max_length=255, example="flask123")
 ):
     return get_token(user, pswd)
 
@@ -30,7 +30,7 @@ async def listar_arquivos():
 async def upload_base_incidencia(
     file: UploadFile = File(..., description='Arquivo a ser carregado.')
 ):
-    return await FileProcessor().upload_file(file)
+    return await FileProcessor().send_tributo(file)
 
 @router.post("/file/upload/tributo-competencia", 
              summary = "Enviar Dados do Arquivo CSV", 
