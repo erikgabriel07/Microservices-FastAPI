@@ -2,6 +2,18 @@ import requests
 from fastapi.responses import JSONResponse
 from fastapi import status as s
 from config.urls import Flask_URL as url
+from fastapi.exceptions import HTTPException
+
+
+def list_file(bi=False,tc=False):
+    try:
+        if bi == tc:
+            raise HTTPException(status_code=s.HTTP_400_BAD_REQUEST, detail={'mensagem': 'Apenas um e somente um parâmetro pode ser selecinado.' })
+        response = requests.post(url.FLASK_LIST_DATA_URL, json={'bi': bi, 'tc': tc})
+        response.raise_for_status()
+    except Exception as e:
+        raise HTTPException(status_code=s.HTTP_400_BAD_REQUEST, detail={'mensagem': 'Erro durante processamento da requisição.', 'Erro': e})
+    return response.json()
 
 
 def get_token(user, pwd, file_processor):
