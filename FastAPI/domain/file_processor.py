@@ -3,11 +3,15 @@ from fastapi import HTTPException, status, UploadFile
 from services.api_client import send_data
 
 class FileProcessor:
-    def __init__(self) -> None:
-        self.token = None
+    token = None
 
-    def set_token(self, token):
-        self.token = token
+    @staticmethod
+    def set_token(token):
+        FileProcessor.token = token
+
+    @staticmethod
+    def get_token():
+        return FileProcessor.token
 
     async def list_files(self):
         # Estrutura do código
