@@ -6,7 +6,10 @@ from config.urls import Flask_URL as url
 
 def get_token(user, pwd, file_processor):
     try:
-        response = requests.post(url.FLASK_LOGIN_ROUTE, json={'user': user, 'pwd': pwd})
+        if file_processor.token:
+            response = requests.post(url.FLASK_LOGIN_ROUTE, json={'token': file_processor.token})
+        else:
+            response = requests.post(url.FLASK_LOGIN_ROUTE, json={'user': user, 'pwd': pwd})
         response.raise_for_status()
     except Exception as e:
         JSONResponse(status_code=s.HTTP_400_BAD_REQUEST,
