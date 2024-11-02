@@ -12,9 +12,12 @@ class FileProcessor:
     @staticmethod
     def get_token():
         return FileProcessor.token
+    
+    def __gen_auth_header(self):
+        return {'Authorization': f'Bearer {self.token}'}
 
     async def list_files(self, bi=False, tc=False):
-        return list_file(bi,tc)
+        return list_file(self.__gen_auth_header(), bi, tc)
 
     async def upload_file(self, file: UploadFile):
 
@@ -87,11 +90,8 @@ class FileProcessor:
 
                     data_to_send.append(row)
 
-                header = {
-                    'Authorization': f'Bearer {self.token}'
-                }
                 # Envia a lista completa para a API Flask
-                send_data(data_to_send, header) # Utilize await se send_insidencia for uma função assíncrona
+                send_data(data_to_send, self.__gen_auth_header()) # Utilize await se send_insidencia for uma função assíncrona
 
 
                 return {"message": f"Arquivo {file.filename} processado e enviado com sucesso"}

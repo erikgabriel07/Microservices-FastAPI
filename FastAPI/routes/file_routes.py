@@ -21,8 +21,11 @@ async def generate_token(
 @router.get("/file/list",
             summary="Listagem de dados",
             description="Essa rota recupera informações do banco de dados.")
-async def listar_arquivos():
-    return await FileProcessor().list_files()
+async def listar_arquivos(
+    bi: bool=Query(False, alias='BaseIncidencia'),
+    tc: bool=Query(False, alias='TributoCompetencia')
+):
+    return await FileProcessor().list_files(bi, tc)
 
 @router.post("/file/upload/base-incidencia", 
              summary = "Enviar Dados do Arquivo CSV", 
