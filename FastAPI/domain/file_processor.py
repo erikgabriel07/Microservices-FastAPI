@@ -8,7 +8,7 @@ class FileProcessor:
     def set_token(self, token):
         FileProcessor.token = token
         
-    def get_token():
+    def get_token(self):
         return self.token
     
     def __gen_auth_header(self):
