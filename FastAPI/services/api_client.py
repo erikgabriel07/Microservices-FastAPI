@@ -62,8 +62,7 @@ def send_data(data, header, file):
             url_to_use = url.FLASK_TRIBUTO_COMPETENCIA_URL
         else:
             raise ValueError(
-                "Arquivo inválido. O arquivo deve ser 'Tabela 1 - Base de Incidência' "
-                "ou 'Tabela 2 - Tributo e Competência'"
+                "O Arquivo enviado é inválido ou incompatível com o serviço solicitado."
             )
 
         # Faz a requisição usando a URL apropriada
