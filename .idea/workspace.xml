@@ -13,7 +13,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python.api_client.executor": "Run",
-    "Python.main.executor": "Run"
+    "Python.main.executor": "Debug"
   }
 }]]></component>
   <component name="RunManager">

@@ -29,16 +29,16 @@ async def listar_arquivos(
 
 @router.post("/file/upload/base-incidencia", 
              summary = "Enviar Dados do Arquivo CSV", 
-             description="Este endpoint recebe um arquivo CSV e retorna uma mensagem de confirmação.")
+             description="Este endpoint recebe um arquivo de Bade de Incidência CSV e retorna uma mensagem de confirmação.")
 async def upload_base_incidencia(
-    file: UploadFile = File(..., description='Arquivo a ser carregado.')
+    file: UploadFile = File(..., description='Arquivo Bade de Incidência CSV.')
 ):
-    return await FileProcessor().send_tributo(file)
+    return await FileProcessor().send_data(file)
 
 @router.post("/file/upload/tributo-competencia", 
              summary = "Enviar Dados do Arquivo CSV", 
-             description="Este endpoint recebe um arquivo CSV e retorna uma mensagem de confirmação.")
+             description="Este endpoint recebe um arquivo de Tributo de Competência CSV e retorna uma mensagem de confirmação.")
 async def upload_tributo_competencia(
-    file: UploadFile = File(..., description='Arquivo a ser carregado.')
+    file: UploadFile = File(..., description='Arquivo Tributo de Competência CSV.')
 ):
-    return await FileProcessor().upload_file(file)
+    return await FileProcessor().send_data(file)
