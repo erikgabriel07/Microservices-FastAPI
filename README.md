@@ -1,7 +1,7 @@
 ![Static Badge](https://img.shields.io/badge/python-green)
-![Last Commit](https://img.shields.io/github/last-commit/erikgabriel07/Microservices-PythonApplication)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/w/erikgabriel07/Microservices-PythonApplication)
-![Contributors](https://img.shields.io/github/contributors/erikgabriel07/Microservices-PythonApplication)
+![Last Commit](https://img.shields.io/github/last-commit/erikgabriel07/Microservices-FastAPI)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/w/erikgabriel07/Microservices-FastAPI)
+![Contributors](https://img.shields.io/github/contributors/erikgabriel07/Microservices-FastAPI)
 
 # Microsserviço para Processamento de Dados com FastAPI e Flask
 
@@ -12,7 +12,7 @@
 - [Rotas da API](#rotas-da-api)
 - [Colaboradores](#colaboradores)
 
-**Acesse e baixe o repositório [FastAPI](https://github.com/erikgabriel07/Microservices-FastAPI) para complementar esse projeto.**
+**Acesse e baixe o repositório [Flask](https://github.com/erikgabriel07/Microservices-FlaskApplication) para complementar esse projeto.**
 
 ## Introdução
 
