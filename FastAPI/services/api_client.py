@@ -1,11 +1,49 @@
 import requests
-from fastapi.responses import JSONResponse
-from fastapi import status as s
+from fastapi import (
+    Response, Request, status as s,
+)
 from config.urls import Flask_URL as url
 from fastapi.exceptions import HTTPException
 
 
-def list_file(header, bi=False, tc=False):
+async def get_token(user, pwd, Response: Response, Request: Request):
+    cookies = Request.cookies
+    try:
+        if cookies:
+            header = dict(Authorization=f'Bearer {cookies.get('access_token')}')
+            response = requests.post(url.FLASK_LOGIN_ROUTE, headers=header,
+                                    json={'user': user, 'pwd': pwd})
+        else:
+            response = requests.post(url.FLASK_LOGIN_ROUTE, json={'user': user, 'pwd': pwd})
+        response.raise_for_status()
+    except Exception as e:
+        raise HTTPException(status_code=s.HTTP_400_BAD_REQUEST, detail={'mensagem': str(e)})
+    
+    if response.status_code == 200:
+        data = response.json()
+        Response.set_cookie('access_token', data.get('access_token'),
+                            max_age=600, httponly=True, samesite='lax')
+        Response.set_cookie('refresh_token', data.get('refresh_token'),
+                            max_age=3600, httponly=True, samesite='lax')
+    return response.json()
+
+
+async def verify_token_expiration(Request: Request):
+    cookies = Request.cookies
+    try:
+        if not cookies.get('access_token') and cookies.get('refresh_token'):
+            header = dict(Authorization=f'Bearer {cookies.get('refresh_token')}')
+            response = requests.post(url.FLASK_REFRESH_TOKEN_ROUTE, headers=header)
+            response.raise_for_status()
+        else:
+            return None
+    except Exception as e:
+        raise HTTPException(status_code=s.HTTP_400_BAD_REQUEST, detail={'mensagem': str(e)})
+
+    return response.json()
+
+
+async def list_file(header, bi=False, tc=False):
     try:
         if bi == tc:
             raise HTTPException(
@@ -25,31 +63,6 @@ def list_file(header, bi=False, tc=False):
             status_code=s.HTTP_400_BAD_REQUEST,
             detail={'mensagem': 'Erro durante o processamento da requisição.', 'error': str(e)}
         )
-    return response.json()
-
-
-def get_token(user, pwd, file_processor):
-    try:
-        if file_processor.get_token():
-            response = requests.post(
-                url.FLASK_LOGIN_ROUTE,
-                json={'user': user, 'pwd': pwd, 'token': file_processor.get_token()}
-            )
-        else:
-            response = requests.post(
-                url.FLASK_LOGIN_ROUTE,
-                json={'user': user, 'pwd': pwd}
-            )
-        response.raise_for_status()
-
-    except Exception as e:
-        return JSONResponse(
-            status_code=s.HTTP_400_BAD_REQUEST,
-            content={'mensagem': 'Ocorreu um erro durante a requisição!', 'error': str(e)}
-        )
-
-    if response.status_code == 200:
-        file_processor.set_token(response.json()['access_token'])
     return response.json()
 
 

@@ -5,4 +5,4 @@ class Flask_URL:
 
     # Rota para conseguir o token de acesso
     FLASK_LOGIN_ROUTE = 'http://localhost:5000/login' 
-    
+    FLASK_REFRESH_TOKEN_ROUTE = 'http://localhost:5000/refresh/token'

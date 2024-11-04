@@ -1,22 +1,27 @@
 import csv
-from fastapi import HTTPException, status, UploadFile
+from fastapi import (
+    HTTPException, status, UploadFile,
+    Request, Response
+)
 from services.api_client import send_data, list_file
 
 
 class FileProcessor:
-    token = None
-
-    def set_token(self, token: str):
-        """Define o token de autenticação."""
-        FileProcessor.token = token
-
-    def get_token(self) -> str:
-        """Retorna o token de autenticação atual."""
-        return self.token
+    def __init__(self, request: Request, response: Response) -> None:
+        self.request = request
+        self.response = response
+        self.token = request.cookies.get('access_token', None)
 
     def __gen_auth_header(self) -> dict:
         """Gera o cabeçalho de autorização com o token."""
-        return {'Authorization': f'Bearer {self.token}'}
+        access_token = None
+        try:
+            cookies = self.response.headers.get('set-cookie').split(';')[0]
+            access_token = cookies.split('=')[1]
+        except Exception as e:
+            pass
+        token = self.token if self.token else access_token
+        return {'Authorization': f'Bearer {token}'}
 
     async def list_files(self, bi: bool = False, tc: bool = False):
         """
@@ -25,7 +30,7 @@ class FileProcessor:
         :param tc: Filtro opcional para arquivos do tipo 'Tributo e Competência'.
         :return: Lista de arquivos.
         """
-        return list_file(self.__gen_auth_header(), bi, tc)
+        return await list_file(self.__gen_auth_header(), bi, tc)
 
     async def send_data(self, file: UploadFile):
         """
@@ -33,13 +38,6 @@ class FileProcessor:
         :param file: Arquivo CSV enviado.
         :return: Mensagem de sucesso ou erro.
         """
-
-        # Verifica se o token foi definido
-        if not self.token:
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Token de autenticação não definido. Por favor, defina o token antes de enviar dados."
-            )
 
         # Verifica se o arquivo é um CSV
         if not file.filename.endswith('.csv'):
