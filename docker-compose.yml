@@ -1,5 +1,7 @@
+version: "3.8"
+
 services:
-  fastapi_service:
+  app:
     container_name: FastAPI
     build:
       context: .
@@ -9,5 +11,5 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - ENV=development
+      - FASTAPI_ENV: development
     
