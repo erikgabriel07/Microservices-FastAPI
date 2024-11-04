@@ -12,12 +12,12 @@
 - [Rotas da API](#rotas-da-api)
 - [Colaboradores](#colaboradores)
 
-**Acesse e baixe o repositório [Flask](https://github.com/erikgabriel07/Microservices-FlaskApplication) para complementar esse projeto.**
+**Acesse e baixe o repositório [FastAPI](https://github.com/erikgabriel07/Microservices-FastAPI) para complementar esse projeto.**
 
 ## Introdução
 
-Esse projeto é um microserviço criado utilizando FastAPI e Flask, onde as duas aplicações
-se comunicam entre si com o objetivo de processar arquivos de dados e realizar operações, 
+Esse projeto é um microserviço criado utilizando FastAPI e Flask, onde as duas aplicações \
+se comunicam entre si com o objetivo de processar arquivos de dados e realizar operações, \
 como criar arquivo, inserir dados e deletar dados realizando operações no banco de dados.
 
 ## Tecnologias Utilizadas
@@ -30,19 +30,19 @@ como criar arquivo, inserir dados e deletar dados realizando operações no banc
 ## Instalação
 ### 1. Clonar repositório
 ```bash
-git clone https://github.com/erikgabriel07/Microservices-PythonApplication
+git clone https://github.com/erikgabriel07/Microservices-FlaskApplication
 ```
 
 ### 2. Criar ambiente virtual
 #### Windows
 ```bash
-cd Microservices-PythonApplication
+cd Microservices-FlaskApplication
 python -m venv venv
 venv\Scripts\activate
 ```
 #### Linux
 ```bash
-cd Microservices-PythonApplication
+cd Microservices-FlaskApplication
 python -m venv venv
 venv\bin\activate
 ```
@@ -51,7 +51,7 @@ venv\bin\activate
 ```bash
 pip install -r requirements.txt
 ```
-Execute as duas aplicações em terminais diferentes após concluir a instalação.
+Execute as duas aplicações em terminais diferentes após concluir a instalação. \
 A aplicação FastAPI estará disponível em `http://localhost:8000` enquanto que
 a aplicação Flask estará disponível em `http://localhost:5000`.
 
@@ -63,6 +63,10 @@ a aplicação Flask estará disponível em `http://localhost:5000`.
 ### Flask
 - **POST**: Cria um novo arquivo de dados.
 - **PATCH**: Define dados do banco de dados como excluído ou duplicado.
+
+## Subindo o docker
+Para criar o container da aplicação, execute: ```docker-compose up -d``` \
+O container estará servindo na porta `8000` para o FastAPI e `5000` para o Flask.
 
 ## Colaboradores
 
