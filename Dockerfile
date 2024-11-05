@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 8000
 
 # Executando aplicação
-CMD ["python", "main.py"]
+CMD ["python", "FastAPI/main.py"]
