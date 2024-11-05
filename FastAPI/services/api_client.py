@@ -43,6 +43,28 @@ async def verify_token_expiration(Request: Request):
     return response.json()
 
 
+async def verify_task_status(Response: Response, Request: Request, task_id: str):
+    verification = await verify_token_expiration(Request)
+    if verification:
+        Response.set_cookie('access_token', verification.get('access_token'),
+                            max_age=600, httponly=True, samesite='lax')
+        cookies = Response.headers.get('set-cookie').split(';')[0]
+        access_token = cookies.split('=')[1]
+    else:
+        cookies = Request.cookies
+        access_token = cookies.get('access_token')
+    
+    header = lambda token: dict(Authorization=f'Bearer {token}')
+    try:
+        full_url = url.FLASK_TASK_STATUS_URL + task_id
+        response = requests.get(full_url, headers=header(access_token))
+        response.raise_for_status()
+    except Exception as e:
+        raise HTTPException(status_code=s.HTTP_400_BAD_REQUEST, detail={'mensagem': str(e)})
+    
+    return response.json()
+
+
 async def list_file(header, bi=False, tc=False):
     try:
         if bi == tc:

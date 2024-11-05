@@ -2,8 +2,17 @@ from fastapi import FastAPI, Request, status as s
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
+from fastapi_cache import FastAPICache
+from fastapi_cache.backends.inmemory import InMemoryBackend
+from contextlib import asynccontextmanager
 from routes import init_routes
 from uvicorn import run as startapp
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    FastAPICache.init(backend=InMemoryBackend())
+    yield
 
 
 def main():
@@ -13,7 +22,8 @@ def main():
         'públicos. Essa API recebe arquivos CSV de dados abertos e processa-os' \
         ' enviando para uma API desenvolvida em Flask que faz o trabalho de ar' \
         'mazenar e processar essas informações em um banco de dados.',
-        debug=True) # debug somente em desenvolvimento
+        debug=True,
+        lifespan=lifespan) # debug somente em desenvolvimento
     init_routes(app)
 
     app.add_middleware(

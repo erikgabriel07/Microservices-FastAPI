@@ -2,12 +2,24 @@ from fastapi import (
     APIRouter, UploadFile, File, Query, Response, Request
 )
 from fastapi.exceptions import HTTPException
+from fastapi_cache.decorator import cache
 from domain.file_processor import FileProcessor
-from services.api_client import get_token, verify_token_expiration
+from services.api_client import get_token, verify_token_expiration, verify_task_status
 
 
 router = APIRouter()
 
+
+@router.get('/status_da_requisicao/{task_id}',
+            summary='Verificar status da requisição',
+            description='Verifica o status de uma requisição.')
+@cache(expire=180)
+async def get_task_status(
+    response: Response,
+    request: Request,
+    task_id: str
+):
+    return await verify_task_status(response, request, task_id)
 
 @router.post('/generate/token',
              summary='Retorna um token de acesso',
