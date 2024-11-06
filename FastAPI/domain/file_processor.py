@@ -38,8 +38,6 @@ class FileProcessor:
         :param file: Arquivo CSV enviado.
         :return: Mensagem de sucesso ou erro.
         """
-
-
         # Verifica se o arquivo é um CSV
         if not file.filename.endswith('.csv'):
             raise HTTPException(
@@ -68,25 +66,17 @@ class FileProcessor:
                 data_to_send.append(row)
 
             # Envia a lista processada para a API
-            send_data(data_to_send, self.__gen_auth_header(), file)
-
-            return {"message": f"Arquivo {file.filename} processado e enviado com sucesso"}
-
-
+            return send_data(data_to_send, self.__gen_auth_header(), file)
 
         except Exception as e:
-
             error_message = str(e)
 
             if "401 Client Error" in error_message and "UNAUTHORIZED" in error_message:
-
                 raise HTTPException(
                     status_code=status.HTTP_401_UNAUTHORIZED,
                     detail="Token de autenticação não definido. Por favor, defina o token antes de enviar dados."
                 )
-
             else:
-
                 raise HTTPException(
                     status_code=status.HTTP_400_BAD_REQUEST,
                     detail=f"Falha ao processar o arquivo CSV: {error_message}"

@@ -54,11 +54,11 @@ async def listar_arquivos(
 
 @router.post("/file/upload/upload_csv",
              summary = "Enviar Dados do Arquivo CSV", 
-             description="Este endpoint recebe um arquivo de Bade de Incidência ou Tributo de Competência CSV e retorna uma mensagem de confirmação.")
+             description="Este endpoint recebe um arquivo de Base de Incidência ou Tributo de Competência CSV e retorna uma mensagem de confirmação.")
 async def upload_base_incidencia(
     response: Response,
     request: Request,
-    file: UploadFile = File(..., description='Arquivo Bade de Incidência ou Tributo de Competência CSV.')
+    file: UploadFile = File(..., description='Arquivo Base de Incidência ou Tributo de Competência CSV.')
 ):
     try:
         verification = await verify_token_expiration(request)

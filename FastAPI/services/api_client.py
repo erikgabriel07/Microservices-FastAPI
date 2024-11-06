@@ -31,7 +31,7 @@ async def get_token(user, pwd, Response: Response, Request: Request):
 async def verify_token_expiration(Request: Request):
     cookies = Request.cookies
     try:
-        if not cookies.get('access_token') and cookies.get("refresh_token"):
+        if not cookies.get('access_token') and cookies.get('refresh_token'):
             header = dict(Authorization=f'Bearer {cookies.get("refresh_token")}')
             response = requests.post(url.FLASK_REFRESH_TOKEN_ROUTE, headers=header)
             response.raise_for_status()
@@ -105,6 +105,7 @@ def send_data(data, header, file):
         response = requests.post(url_to_use, json=data, headers=header)
         response.raise_for_status()
 
+        return response.json()
     except requests.exceptions.RequestException as e:
         raise Exception(f"Erro ao enviar dados: {e}")
 
