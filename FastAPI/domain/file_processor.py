@@ -39,6 +39,7 @@ class FileProcessor:
         :return: Mensagem de sucesso ou erro.
         """
 
+
         # Verifica se o arquivo é um CSV
         if not file.filename.endswith('.csv'):
             raise HTTPException(
@@ -71,8 +72,22 @@ class FileProcessor:
 
             return {"message": f"Arquivo {file.filename} processado e enviado com sucesso"}
 
+
+
         except Exception as e:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail=f"Falha ao processar o arquivo CSV: {str(e)}"
-            )
+
+            error_message = str(e)
+
+            if "401 Client Error" in error_message and "UNAUTHORIZED" in error_message:
+
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail="Token de autenticação não definido. Por favor, defina o token antes de enviar dados."
+                )
+
+            else:
+
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail=f"Falha ao processar o arquivo CSV: {error_message}"
+                )

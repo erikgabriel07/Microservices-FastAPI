@@ -52,13 +52,13 @@ async def listar_arquivos(
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-@router.post("/file/upload/base-incidencia", 
+@router.post("/file/upload/upload_csv",
              summary = "Enviar Dados do Arquivo CSV", 
-             description="Este endpoint recebe um arquivo de Bade de Incidência CSV e retorna uma mensagem de confirmação.")
+             description="Este endpoint recebe um arquivo de Bade de Incidência ou Tributo de Competência CSV e retorna uma mensagem de confirmação.")
 async def upload_base_incidencia(
     response: Response,
     request: Request,
-    file: UploadFile = File(..., description='Arquivo Bade de Incidência CSV.')
+    file: UploadFile = File(..., description='Arquivo Bade de Incidência ou Tributo de Competência CSV.')
 ):
     try:
         verification = await verify_token_expiration(request)
@@ -70,20 +70,3 @@ async def upload_base_incidencia(
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-@router.post("/file/upload/tributo-competencia", 
-             summary = "Enviar Dados do Arquivo CSV", 
-             description="Este endpoint recebe um arquivo de Tributo de Competência CSV e retorna uma mensagem de confirmação.")
-async def upload_tributo_competencia(
-    response: Response,
-    request: Request,
-    file: UploadFile = File(..., description='Arquivo Tributo de Competência CSV.')
-):
-    try:
-        verification = await verify_token_expiration(request)
-        if verification:
-            response.set_cookie('access_token', verification.get('access_token'),
-                                max_age=600, httponly=True, samesite='lax')
-        
-        return await FileProcessor(request, response).send_data(file)
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))

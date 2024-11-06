@@ -10,7 +10,7 @@ async def get_token(user, pwd, Response: Response, Request: Request):
     cookies = Request.cookies
     try:
         if cookies:
-            header = dict(Authorization=f'Bearer {cookies.get('access_token')}')
+            header = dict(Authorization=f'Bearer {cookies.get("access_token")}')
             response = requests.post(url.FLASK_LOGIN_ROUTE, headers=header,
                                     json={'user': user, 'pwd': pwd})
         else:
@@ -31,8 +31,8 @@ async def get_token(user, pwd, Response: Response, Request: Request):
 async def verify_token_expiration(Request: Request):
     cookies = Request.cookies
     try:
-        if not cookies.get('access_token') and cookies.get('refresh_token'):
-            header = dict(Authorization=f'Bearer {cookies.get('refresh_token')}')
+        if not cookies.get('access_token') and cookies.get("refresh_token"):
+            header = dict(Authorization=f'Bearer {cookies.get("refresh_token")}')
             response = requests.post(url.FLASK_REFRESH_TOKEN_ROUTE, headers=header)
             response.raise_for_status()
         else:
