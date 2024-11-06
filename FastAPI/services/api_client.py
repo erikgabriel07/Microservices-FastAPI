@@ -132,13 +132,13 @@ def send_data(data, header, file):
     """
     try:
         # Define a URL com base no tipo de arquivo
-        if file.filename == "Tabela 1 - Base de Incidência.csv":
+        if file.filename == 'Tabela 1 - Base de Incidência.csv':
             url_to_use = url.FLASK_BASE_INCIDENCIA_URL
-        elif file.filename == "Tabela 2 - Tributo e Competência.csv":
+        elif file.filename == 'Tabela 2 - Tributo e Competência.csv':
             url_to_use = url.FLASK_TRIBUTO_COMPETENCIA_URL
         else:
             raise ValueError(
-                "O Arquivo enviado é inválido ou incompatível com o serviço solicitado."
+                'O Arquivo enviado é inválido ou incompatível com o serviço solicitado.'
             )
 
         # Faz a requisição usando a URL apropriada
@@ -147,7 +147,7 @@ def send_data(data, header, file):
 
         return response.json()
     except requests.exceptions.RequestException as e:
-        raise Exception(f"Erro ao enviar dados: {e}")
+        raise Exception(f'Erro ao enviar dados: {e}')
 
     except ValueError as ve:
         raise Exception(ve)
