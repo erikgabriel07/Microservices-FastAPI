@@ -23,14 +23,14 @@ class FileProcessor:
         token = self.token if self.token else access_token
         return {'Authorization': f'Bearer {token}'}
 
-    async def list_files(self, bi: bool = False, tc: bool = False):
+    async def list_files(self, page, per_page, bi: bool = False, tc: bool = False):
         """
         Lista arquivos disponíveis, com parâmetros opcionais para tipos específicos de arquivos.
         :param bi: Filtro opcional para arquivos do tipo 'Base de Incidência'.
         :param tc: Filtro opcional para arquivos do tipo 'Tributo e Competência'.
         :return: Lista de arquivos.
         """
-        return await list_file(self.__gen_auth_header(), bi, tc)
+        return await list_file(self.__gen_auth_header(), page, per_page, bi, tc)
 
     async def send_data(self, file: UploadFile):
         """

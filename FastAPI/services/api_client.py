@@ -24,7 +24,7 @@ async def get_token(user, pwd, Response: Response, Request: Request):
         Response.set_cookie('access_token', data.get('access_token'),
                             max_age=600, httponly=True, samesite='lax')
         Response.set_cookie('refresh_token', data.get('refresh_token'),
-                            max_age=3600, httponly=True, samesite='lax')
+                            max_age=86400, httponly=True, samesite='lax')
     return response.json()
 
 
@@ -65,7 +65,7 @@ async def verify_task_status(Response: Response, Request: Request, task_id: str)
     return response.json()
 
 
-async def list_file(header, bi=False, tc=False):
+async def list_file(header, page, per_page, bi=False, tc=False):
     try:
         if bi == tc:
             raise HTTPException(
@@ -73,8 +73,9 @@ async def list_file(header, bi=False, tc=False):
                 detail={'mensagem': 'Apenas um e somente um parâmetro pode ser selecionado.'}
             )
 
+        parameters = f'?page={page}&per_page={per_page}'
         response = requests.get(
-            url.FLASK_LIST_DATA_URL,
+            url.FLASK_LIST_DATA_URL + parameters,
             headers=header,
             json={'bi': bi, 'tc': tc}
         )

@@ -2,7 +2,6 @@ from fastapi import (
     APIRouter, UploadFile, File, Query, Response, Request
 )
 from fastapi.exceptions import HTTPException
-from fastapi_cache.decorator import cache
 from domain.file_processor import FileProcessor
 from services.api_client import get_token, verify_token_expiration, verify_task_status
 
@@ -13,7 +12,6 @@ router = APIRouter()
 @router.get('/status_da_requisicao/{task_id}',
             summary='Verificar status da requisição',
             description='Verifica o status de uma requisição.')
-@cache(expire=180)
 async def get_task_status(
     response: Response,
     request: Request,
@@ -40,7 +38,9 @@ async def listar_arquivos(
     response: Response,
     request: Request,
     bi: bool=Query(False, alias='BaseIncidencia'),
-    tc: bool=Query(False, alias='TributoCompetencia')
+    tc: bool=Query(False, alias='TributoCompetencia'),
+    page: int=Query(1, ge=1, description='Número da página.'),
+    per_page: int=Query(100, ge=100, description='Total de itens que cada página deve ter.')
 ):
     try:
         verification = await verify_token_expiration(request)
@@ -48,7 +48,7 @@ async def listar_arquivos(
             response.set_cookie('access_token', verification.get('access_token'),
                                 max_age=600, httponly=True, samesite='lax')
         
-        return await FileProcessor(request, response).list_files(bi, tc)
+        return await FileProcessor(request, response).list_files(page, per_page, bi, tc)
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
