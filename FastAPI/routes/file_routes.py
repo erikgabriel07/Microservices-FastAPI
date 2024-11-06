@@ -26,14 +26,14 @@ async def get_task_status(
 async def generate_token(
     response: Response,
     request: Request,
-    user=Query(..., alias='USUÁRIO', max_length=100, example="flask"),
-    pswd=Query(..., alias='SENHA', max_length=255, example="flask123")
+    user=Query(..., alias='USUÁRIO', max_length=100, example='flask'),
+    pswd=Query(..., alias='SENHA', max_length=255, example='flask123')
 ):
     return await get_token(user, pswd, response, request)
 
-@router.get("/file/list",
-            summary="Listagem de dados",
-            description="Essa rota recupera informações do banco de dados.")
+@router.get('/file/list',
+            summary='Listagem de dados',
+            description='Essa rota recupera informações do banco de dados.')
 async def listar_arquivos(
     response: Response,
     request: Request,
@@ -52,10 +52,11 @@ async def listar_arquivos(
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-@router.post("/file/upload/upload_csv",
-             summary = "Enviar Dados do Arquivo CSV", 
-             description="Este endpoint recebe um arquivo de Base de Incidência ou Tributo de Competência CSV e retorna uma mensagem de confirmação.")
-async def upload_base_incidencia(
+@router.post('/file/upload/upload_csv',
+             summary = 'Enviar Dados do Arquivo CSV', 
+             description='Este endpoint recebe um arquivo de Base de Incidência ' \
+             'ou Tributo de Competência CSV e retorna uma mensagem de confirmação.')
+async def upload_csv(
     response: Response,
     request: Request,
     file: UploadFile = File(..., description='Arquivo Base de Incidência ou Tributo de Competência CSV.')
