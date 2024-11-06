@@ -7,7 +7,15 @@ from fastapi.exceptions import HTTPException
 
 
 async def get_token(user, pwd, Response: Response, Request: Request):
-    cookies = Request.cookies
+    """
+    Função específica para gerar um token de acesso e um token refresh.
+    :param user: Usuário para realizar o login
+    :param pwd: Senha para realizar o login
+    :param Response: Utilizado nessa função para definir os cookies
+    :param Request: Utilizado nessa função para requisitar os cookies
+    :return: Um JSON da resposta da requisição
+    """
+    cookies = Request.cookies # Coletando os cookies salvos no navegador
     try:
         if cookies:
             header = dict(Authorization=f'Bearer {cookies.get("access_token")}')
@@ -29,7 +37,14 @@ async def get_token(user, pwd, Response: Response, Request: Request):
 
 
 async def verify_token_expiration(Request: Request):
-    cookies = Request.cookies
+    """
+    Função específica para a verificação de expiração de token.
+    Caso o token de acesso expire, gera um novo token de acesso
+    utilizando o token refresh.
+    :param Request: Utilizado nessa função para requisitar os cookies
+    :return: Um JSON da resposta da requisição contendo o novo token de acesso
+    """
+    cookies = Request.cookies # Coletando os cookies salvos no navegador
     try:
         if not cookies.get('access_token') and cookies.get('refresh_token'):
             header = dict(Authorization=f'Bearer {cookies.get("refresh_token")}')
@@ -44,6 +59,15 @@ async def verify_token_expiration(Request: Request):
 
 
 async def verify_task_status(Response: Response, Request: Request, task_id: str):
+    """
+    Função específica para verificar o status de uma tarefa
+    que esteja sendo executada em segundo plano no backend
+    do Flask.
+    :param Response: Utilizado nessa função para definir os cookies
+    :param Request: Utilizado nessa função para requisitar os cookies
+    :param task_id: Identificador da tarefa
+    :return: Um JSON da resposta da requisição
+    """
     verification = await verify_token_expiration(Request)
     if verification:
         Response.set_cookie('access_token', verification.get('access_token'),
@@ -66,6 +90,15 @@ async def verify_task_status(Response: Response, Request: Request, task_id: str)
 
 
 async def list_file(header, page, per_page, bi=False, tc=False):
+    """
+    Função específica para listagem de dados.
+    :param header: Cabeçalho contendo o token de acesso
+    :param page: O número da página
+    :param per_page: Quantos itens deve haver por página
+    :param bi: Se deve listar de Base de Incidencia
+    :param tc: Se deve listar de Tributo e Competencia
+    :return: Um JSON da resposta da requisição
+    """
     try:
         if bi == tc:
             raise HTTPException(
@@ -90,6 +123,13 @@ async def list_file(header, page, per_page, bi=False, tc=False):
 
 
 def send_data(data, header, file):
+    """
+    Função específica para upload de dados.
+    :param data: Uma lista contendo todos os dados a ser enviado
+    :param header: Cabeçalho contendo o token de acesso
+    :param file: O arquivo que está sendo enviado
+    :return: Um JSON da resposta da requisição
+    """
     try:
         # Define a URL com base no tipo de arquivo
         if file.filename == "Tabela 1 - Base de Incidência.csv":
