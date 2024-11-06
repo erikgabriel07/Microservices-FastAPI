@@ -42,7 +42,7 @@ class FileProcessor:
         if not file.filename.endswith('.csv'):
             raise HTTPException(
                 status_code=status.HTTP_406_NOT_ACCEPTABLE,
-                detail="Apenas arquivos CSV são aceitos"
+                detail='Apenas arquivos CSV são aceitos'
             )
 
         try:
@@ -59,9 +59,9 @@ class FileProcessor:
             # Processa cada linha do arquivo
             for row in csv_reader:
                 # Limita o campo 'Valor_da_Receita_Tributaria' a duas casas decimais
-                valor = row.get("Valor_da_Receita_Tributaria", "")
-                if "." in valor:
-                    row["Valor_da_Receita_Tributaria"] = valor[:valor.find(".") + 3]
+                valor = row.get('Valor_da_Receita_Tributaria', '')
+                if '.' in valor:
+                    row['Valor_da_Receita_Tributaria'] = valor[:valor.find('.') + 3]
 
                 data_to_send.append(row)
 
@@ -71,13 +71,13 @@ class FileProcessor:
         except Exception as e:
             error_message = str(e)
 
-            if "401 Client Error" in error_message and "UNAUTHORIZED" in error_message:
+            if '401 Client Error' in error_message and 'UNAUTHORIZED' in error_message:
                 raise HTTPException(
                     status_code=status.HTTP_401_UNAUTHORIZED,
-                    detail="Token de autenticação não definido. Por favor, defina o token antes de enviar dados."
+                    detail='Token de autenticação não definido. Por favor, defina o token antes de enviar dados.'
                 )
             else:
                 raise HTTPException(
                     status_code=status.HTTP_400_BAD_REQUEST,
-                    detail=f"Falha ao processar o arquivo CSV: {error_message}"
+                    detail=f'Falha ao processar o arquivo CSV: {error_message}'
                 )
